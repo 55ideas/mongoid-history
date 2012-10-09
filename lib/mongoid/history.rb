@@ -8,6 +8,5 @@ module Mongoid
     def self.tracker_class
       @tracker_class ||= tracker_class_name.to_s.classify.constantize
     end
-
   end
 end
