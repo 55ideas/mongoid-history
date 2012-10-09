@@ -18,7 +18,7 @@ Install
 This gem supports Mongoid 3.x on Ruby 1.9.3 only. Add it to your `Gemfile` or run `gem install mongoid-history`.
 
 ```ruby
-gem 'mongoid-history'
+gem 'mongoid-history', git: 'git://github.com/55ideas/mongoid-history.git'
 ```
 
 Usage
@@ -61,12 +61,14 @@ The following example sets the `current_user_method` using a Rails initializer
 Mongoid::History.current_user_method = :current_user
 ```
 
-# IMPORTANT
+**IMPORTANT**
 for this to work in development environment, add
 ```ruby
 require_dependency 'history_tracker.rb' if Rails.env == "development"
 ```
 to the initializer so controller filter would be installed
+
+
 
 When `current_user_method` is set, mongoid-history will invoke this method on each update and set its result as the instance modifier.
 
