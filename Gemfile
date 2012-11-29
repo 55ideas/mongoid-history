@@ -10,3 +10,4 @@ group :test do
   gem "jeweler"
   gem "database_cleaner", ">= 0.8.0"
 end
+
