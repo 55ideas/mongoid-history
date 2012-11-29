@@ -4,7 +4,7 @@ gem "easy_diff"
 gem "mongoid", "~> 3.0.4"
 
 group :test do
-  gem "rspec", "~> 2.11.0"
+  gem "rspec", "~> 2.12.0"
   gem "yard"
   gem "bundler", ">= 1.0.0"
   gem "jeweler"
