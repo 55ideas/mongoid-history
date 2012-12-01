@@ -16,12 +16,14 @@ module Mongoid::History
       belongs_to  :modifier,                :class_name => Mongoid::History.modifier_class_name
 
       Mongoid::History.tracker_class_name = self.name.tableize.singularize.to_sym
-        
+
       # install model observer and action controller filter
-      Mongoid::History::Sweeper.send(:observe, Mongoid::History.tracker_class_name)        
+      Mongoid::History::Sweeper.send(:observe, Mongoid::History.tracker_class_name)
       if defined?(ActionController) and defined?(ActionController::Base)
         ActionController::Base.class_eval do
-          around_filter Mongoid::History::Sweeper.instance
+          # around_filter Mongoid::History::Sweeper.instance
+          before_filter { |controller| Mongoid::History::Sweeper.instance.before(controller) }
+          after_filter { |controller| Mongoid::History::Sweeper.instance.after(controller) }
         end
       end
     end
