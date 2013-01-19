@@ -8,6 +8,11 @@ Mongoid-history tracks historical changes for any document, including embedded o
 
 This gem also implements multi-user undo, which allows users to undo any history change in any order. Undoing a document also creates a new history track. This is great for auditing and preventing vandalism, but is probably not suitable for use cases such as a wiki.
 
+About this fork
+--------------
+This gem didn't work correctly for us, when not setting modifier manually, so we rewrote it a bit. Seems to work fully now, including manually setting modifier
+
+
 Stable Release
 --------------
 
@@ -188,6 +193,6 @@ Contributing to mongoid-history
 Copyright
 ---------
 
-Copyright (c) 2011-2012 Aaron Qian. MIT License. 
+Copyright (c) 2011-2012 Aaron Qian. MIT License.
 See [LICENSE.txt](https://github.com/aq1018/mongoid-history/blob/master/LICENSE.txt) for further details.
 
