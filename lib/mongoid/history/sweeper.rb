@@ -24,16 +24,16 @@ module Mongoid::History
     def after(controller)
       self.controller = nil
     end
-    
+
     def before_create(track)
-      modifier_field = track.trackable.history_trackable_options[:modifier_field]
-      modifier = track.trackable.send modifier_field
-      track.modifier = current_user unless modifier
+      track.modifier = current_user
     end
 
     def current_user
       if controller.respond_to?(Mongoid::History.current_user_method, true)
         controller.send Mongoid::History.current_user_method
+      else
+        nil
       end
     end
   end
