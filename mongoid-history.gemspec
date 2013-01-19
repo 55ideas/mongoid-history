@@ -60,5 +60,12 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<easy_diff>, [">= 0"])
     s.add_dependency(%q<mongoid>, [">= 3.0.4"])
   end
+
+  s.add_development_dependency('rspec', ["~> 2.12.0"])
+  s.add_development_dependency('yard')
+  s.add_development_dependency('bundler', ['>= 1.0.0'])
+  s.add_development_dependency('jeweler')
+  s.add_development_dependency('database_cleaner', [">= 0.8.0"])
+  s.add_development_dependency('activesupport', '~> 3.2.11')
 end
 

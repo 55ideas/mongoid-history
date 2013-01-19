@@ -186,7 +186,7 @@ module Mongoid::History
         @history_tracker_attributes = {
           :association_chain  => traverse_association_chain,
           :scope              => history_trackable_options[:scope],
-          :modifier           => send(history_trackable_options[:modifier_field])
+          :modifier           => send("#{history_trackable_options[:modifier_field].to_s}_id_changed?".to_sym) ? send(history_trackable_options[:modifier_field]) : nil,
         }
 
         original, modified = transform_changes(case method
@@ -226,7 +226,8 @@ module Mongoid::History
         return unless track_history?
         current_version = (self.send(history_trackable_options[:version_field]) || 0 ) + 1
 
-        Mongoid::History.tracker_class.create!(history_tracker_attributes(:destroy).merge(:version => current_version, :action => "destroy", :trackable => self))
+        track = Mongoid::History.tracker_class.create!(history_tracker_attributes(:destroy).merge(:version => current_version, :action => "destroy", :trackable => self))
+        self.send("#{history_trackable_options[:modifier_field]}=", track.modifier)
 
         clear_memoization
       end

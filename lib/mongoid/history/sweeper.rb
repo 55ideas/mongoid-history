@@ -26,7 +26,7 @@ module Mongoid::History
     end
 
     def before_create(track)
-      track.modifier = current_user
+      track.modifier = current_user if track.modifier.nil?
     end
 
     def current_user
